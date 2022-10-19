@@ -46,15 +46,7 @@ const vpassword = value => {
     );
   }
 };
-const Cpassword = value => {
-  if (value.length < 6 || value.length > 40) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
-      </div>
-    );
-  }
-};
+
 
 export default class  Receptionistregister extends Component {
   constructor(props) {
@@ -63,13 +55,13 @@ export default class  Receptionistregister extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
-    this.onChangeCPassword = this.onChangeCPassword.bind(this);
+    
 
     this.state = {
       username: "",
       email: "",
       password: "",
-      cpassword: "",
+      
       successful: false,
       message: ""
     };
@@ -92,11 +84,7 @@ export default class  Receptionistregister extends Component {
       password: e.target.value
     });
   }
-  onChangeCPassword(e) {
-    this.setState({
-      cpassword: e.target.value
-    });
-  }
+  
 
   handleRegister(e) {
     e.preventDefault();
@@ -113,7 +101,7 @@ export default class  Receptionistregister extends Component {
         this.state.username,
         this.state.email,
         this.state.password,
-        this.state.cpassword
+        // this.state.cpassword
 
       ).then(
         response => {
@@ -198,18 +186,7 @@ export default class  Receptionistregister extends Component {
                     validations={[required, vpassword]}
                   />
                 </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Confirm Password</label>
-                    <Input
-                      type="password"
-                      className="form-control"
-                      name="password"
-                      placeholder="Confirm Password"
-                      value={this.state.cpassword}
-                      onChange={this.onChangeCPassword}
-                      validations={[required, Cpassword]}
-                    />
-                  </div>
+                  
 
                 <div className="form-group">
                     <button className="btn btn-primary btn-block">Sign Up</button>
